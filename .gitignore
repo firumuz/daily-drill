@@ -1,0 +1,5 @@
+# Plaintext card content never goes to the public repo; only docs/data/*.json (encrypted) is published.
+content/
+*.env
+.env*
+node_modules/

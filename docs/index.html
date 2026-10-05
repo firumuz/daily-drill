@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daily Drill</title>
+<meta name="theme-color" content="#1b3a5b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Daily Drill">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+.lock{display:flex;flex-direction:column;gap:12px;padding-block:24px}
+.lock h1{font:700 26px/1.2 var(--f-display);color:var(--navy);margin:0}
+.lock p{margin:0;color:var(--muted);font-size:14px}
+.lock input[type=password]{font:500 17px/1 var(--f-body);padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink)}
+.lock label{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.err{color:var(--again);font-size:14px;min-height:20px}
+.hdr-btn{border:1px solid var(--line);background:transparent;color:var(--muted);font:500 12px/1 var(--f-body);padding:6px 9px;border-radius:999px;cursor:pointer}
+.hdr-r{display:flex;gap:6px;align-items:center}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <section class="lock" id="lock">
+    <h1>Daily Drill</h1>
+    <p>ทบทวน MIS topic review ด้วยการ์ดความรู้และโจทย์ case 5 ตัวเลือก</p>
+    <form id="lock-form" autocomplete="off">
+      <div class="lock">
+        <input type="password" id="pw" placeholder="รหัสผ่าน" autocomplete="current-password" required>
+        <label><input type="checkbox" id="remember" checked> จำรหัสในเครื่องนี้</label>
+        <button class="btn-all" type="submit" id="unlock">เปิด</button>
+        <div class="err" id="lock-err" role="alert"></div>
+      </div>
+    </form>
+  </section>
+
+  <div id="main" hidden>
+    <header>
+      <div class="brand">Daily Drill<small id="sub-brand">MIS Topic Review · เลือกเรื่องที่อยากทบทวน</small></div>
+      <div class="hdr-r"><span class="mode" id="mode"></span><button class="hdr-btn" id="logout">ล็อก</button></div>
+    </header>
+    <div class="chips" role="group" aria-label="กลุ่มเรื่อง" id="chips"></div>
+    <nav class="nav" id="nav" hidden>
+      <button class="back" id="back">‹ กลับ</button>
+      <span class="nav-t" id="nav-t"></span>
+      <span class="nav-p" id="nav-p"></span>
+    </nav>
+    <section id="stage" aria-live="polite"></section>
+    <div class="toast" id="toast"></div>
+    <div class="foot">สรุปโดยใช้ AI ช่วยจาก literature ที่อ้างอิงในหน้า ยังไม่ได้ผ่านการตรวจโดยผู้เชี่ยวชาญทุกข้อ ใช้เพื่อทบทวน ไม่ใช่ guideline · เจอข้อที่น่าจะผิด กด 🚩 แล้วส่งข้อความที่คัดลอกให้ผู้ดูแล<span id="built"></span></div>
+  </div>
+</div>
+
+<div class="sheet-bg" id="sheet" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title">
+    <div class="grip"></div>
+    <div class="crumb" id="sh-crumb"></div>
+    <h3 id="sh-title"></h3>
+    <ul id="sh-body"></ul>
+    <button class="ghost" id="sh-close">ปิด</button>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
